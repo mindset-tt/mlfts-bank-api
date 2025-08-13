@@ -1,0 +1,32 @@
+# Maven build
+target/
+
+# Compiled Java files
+*.class
+
+# Log files
+*.log
+logs/
+
+# IDE files
+.vscode/
+*.iml
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Spring Boot specific
+application-local.properties
+
+# Database files
+*.db
+*.h2.db
+
+# Test coverage
+jacoco.exec
+
+# Temporary files
+*.tmp
+*~

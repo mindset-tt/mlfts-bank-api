@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports 
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" 
+              name="account_statement" 
+              pageWidth="595" 
+              pageHeight="842" 
+              columnWidth="535" 
+              leftMargin="20" 
+              rightMargin="20" 
+              topMargin="20" 
+              bottomMargin="20">
+
+    <parameter name="accountNumber" class="java.lang.String"/>
+    <parameter name="accountType" class="java.lang.String"/>
+    <parameter name="customerName" class="java.lang.String"/>
+    <parameter name="fromDate" class="java.lang.String"/>
+    <parameter name="toDate" class="java.lang.String"/>
+    <parameter name="currentBalance" class="java.math.BigDecimal"/>
+    <parameter name="reportDate" class="java.lang.String"/>
+
+    <field name="transactionReference" class="java.lang.String"/>
+    <field name="transactionDate" class="java.time.LocalDateTime"/>
+    <field name="description" class="java.lang.String"/>
+    <field name="amount" class="java.math.BigDecimal"/>
+    <field name="transactionType" class="java.lang.String"/>
+
+    <title>
+        <band height="150">
+            <staticText>
+                <reportElement x="0" y="0" width="535" height="30"/>
+                <textElement textAlignment="Center">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Mlfts Bank API]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="0" y="35" width="535" height="25"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ACCOUNT STATEMENT]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="0" y="70" width="100" height="15"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Customer Name:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="100" y="70" width="200" height="15"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{customerName}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="0" y="90" width="100" height="15"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Account Number:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="100" y="90" width="200" height="15"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{accountNumber}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="0" y="110" width="100" height="15"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Account Type:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="100" y="110" width="200" height="15"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{accountType}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="350" y="70" width="80" height="15"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Statement Period:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="350" y="90" width="185" height="15"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{fromDate} + " to " + $P{toDate}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="350" y="110" width="80" height="15"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Current Balance:]]></text>
+            </staticText>
+            
+            <textField pattern="$ #,##0.00">
+                <reportElement x="430" y="110" width="105" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{currentBalance}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="30">
+            <rectangle>
+                <reportElement x="0" y="0" width="535" height="25" backcolor="#E0E0E0"/>
+            </rectangle>
+            
+            <staticText>
+                <reportElement x="5" y="5" width="80" height="15"/>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Date]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="90" y="5" width="100" height="15"/>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Reference]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="195" y="5" width="200" height="15"/>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Description]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="400" y="5" width="60" height="15"/>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Type]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="465" y="5" width="70" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Amount]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="5" y="0" width="80" height="15"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[java.sql.Date.valueOf($F{transactionDate}.toLocalDate())]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="90" y="0" width="100" height="15"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{transactionReference}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="195" y="0" width="200" height="15"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="400" y="0" width="60" height="15"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{transactionType}]]></textFieldExpression>
+            </textField>
+            
+            <textField pattern="$ #,##0.00">
+                <reportElement x="465" y="0" width="70" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+            </textField>
+            
+            <line>
+                <reportElement x="0" y="18" width="535" height="1"/>
+            </line>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="10" width="200" height="15"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <text><![CDATA[Generated by Mlfts Bank API]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="0" y="25" width="200" height="15"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Report Date: " + $P{reportDate}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="400" y="25" width="80" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
